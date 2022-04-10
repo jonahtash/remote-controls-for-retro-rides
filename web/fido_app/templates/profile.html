@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block pageDescription %}
+This is a user account page created by Team PASS: an undergraduate Gemstone research team from UMD studying
+cybersecurity.
+{% endblock %}
+{% block title %}User Account{% endblock %}
+
+{% block cardTitle %}
+<div class="d-flex flex-row justify-content-between">
+  <span>{{current_user.display_name}}'s Account</span>
+  
+  <form action="{{ url_for('logout') }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit" class="btn btn-primary btn-block">Log Out</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block cardBody %}
+<p>Use this site to break into Ben's car!</p>
+<footer>
+  <form action="{{ url_for('unlock_car') }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit" class="btn btn-success btn-block profile-action">Unlock</button>
+  </form>
+  <form action="{{ url_for('lock_car') }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit" class="btn btn-danger btn-block profile-action">Lock</button>
+  </form>
+    <form action="{{ url_for('makepin') }}" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit" class="btn btn-info btn-block profile-action">Generate PIN</button>
+  </form>
+</footer>
+
+{% endblock %}
+
+{% block customJS %}
+<script src="{{ url_for('static', filename='scripts/lib/utils.js') }}"></script>
+{% endblock %}

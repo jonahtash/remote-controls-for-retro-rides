@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block pageDescription %}
+This is a FIDO login page created by Team PASS: an undergraduate Gemstone research team from UMD studying
+cybersecurity. H4xed by Hedgehog Vase
+{% endblock %}
+{% block title %}FIDO Login{% endblock %}
+{% block cardTitle %}FIDO Login{% endblock %}
+{% block cardBody %}
+
+<!-- Login Form -->
+<form id="login-form" class="primary-form" method="POST" timed-element timed-events="submit">
+
+  <!-- CSRF Protection -->
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input name="email" type="email" class="form-control" id="email" autocomplete="email" required timed-element />
+  </div>
+
+  <!-- Password-related inputs -->
+  <section id="password-inputs" class="collapse show">
+  </section>
+
+  {% import 'components.html' as components %}
+  {{ components.form_footer("Don't have an account? Register", url_for('register'), false) }}
+</form>
+
+{% endblock %}
+
+{% block customJS %}
+<script src="{{ url_for('static', filename='scripts/lib/utils.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+<script src="{{ url_for('static', filename='scripts/interaction-logging.js') }}"></script>
+{% endblock %}

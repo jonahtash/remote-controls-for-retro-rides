@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- SEO meta tags -->
+    <meta name="description" content="{% block pageDescription %}{% endblock%}" />
+    <meta name="author" content="Hedgehog Vase" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" type="text/css" />
+
+    <title>Team PASS | {% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}" />
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="row justify-content-center">
+        <div class="col-11 col-lg-6">
+          <img src="{{ url_for('static', filename='images/hacker_hog.jpg') }}" alt="Best Logo" class="img-fluid team-logo" />
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">{% block cardTitle %}{% endblock %}</h3>
+
+              {% import 'components.html' as components %}
+              {{ components.message_flasher() }}
+
+              {% block cardBody %}{% endblock %}
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bootstrap JS Libraries (jQuery, Popper, and Bootstrap) -->
+    <script src="{{ url_for('static', filename=scripts/lib/jquery-3.4.1.slim.min.js') }}">
+    </script>
+    <script src="{{ url_for('static', filename=scripts/lib/popper.min.js') }}">
+    </script>
+    <script src="{{ url_for('static', filename=scripts/lib/bootstrap.min.js') }}">
+    </script>
+
+    <!--Inject the CSRF token to be accessible in JS for Fetch requests 
+      (see https://flask-wtf.readthedocs.io/en/0.15.x/csrf/#javascript-requests)-->
+    <script type="text/javascript">
+      const CSRF_TOKEN = "{{ csrf_token() }}";
+    </script>
+
+    {% block customJS %}{% endblock %}
+  </body>
+
+</html>

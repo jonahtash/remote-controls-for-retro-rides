@@ -1,0 +1,18 @@
+# Environment variable files
+**/.env
+
+# Any test databases
+**/*.db
+
+# Pycache
+**/__pycache__
+
+# Virtual environment exclusions
+**/venv
+
+# Vscode settings
+**/.vscode
+
+# Build/test artifacts
+**/*.pyc
+.cache
